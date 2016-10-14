@@ -30,10 +30,15 @@ void draw() {
     popMatrix();
   }
 
-  iteration += 0.3;
+  iteration += 0.5;
   //println("sin(radians(iteration)) = " + str( sin(radians(iteration)) ));
   println("iteration = " + str(iteration));
 
+  if(frameCount <= 720 && frameCount%4 ==0){
+    TImage frame = new TImage(width,height,RGB,sketchPath("frame_"+nf(frameCount,3)+".png"));
+    frame.set(0,0,get());
+    frame.saveThreaded();
+  }
 }
 
 void keyPressed() {
