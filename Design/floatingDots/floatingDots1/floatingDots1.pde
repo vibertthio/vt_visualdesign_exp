@@ -15,6 +15,7 @@ boolean z_rotate = false;
 float[][] y;
 
 void setup() {
+  noCursor();
   size(800, 800, P3D);
   frameRate(60);
 
@@ -40,6 +41,8 @@ float enhance = 3;
 float damp = 0.1;
 float value;
 float p_distance = 6;
+
+
 
 void draw() {
   translate(width/2, height/2);
