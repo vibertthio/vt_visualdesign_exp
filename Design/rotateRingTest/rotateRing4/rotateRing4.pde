@@ -37,6 +37,11 @@ void draw() {
   //println("sin(radians(iteration)) = " + str( sin(radians(iteration)) ));
   println("iteration = " + str(iteration));
 
+  if(frameCount <= 1200 && frameCount%4 ==0){
+    TImage frame = new TImage(width,height,RGB,sketchPath("frame_"+nf(frameCount,4)+".png"));
+    frame.set(0,0,get());
+    frame.saveThreaded();
+  }
 }
 
 void keyPressed() {
