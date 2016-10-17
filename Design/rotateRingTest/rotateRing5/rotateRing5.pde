@@ -21,9 +21,7 @@ void draw() {
   translate(width/2, height/2);
   background(0);
 
-  //rotateY(radians(offsetAngle));
   rotateY(2*PI*mouseX/width);
-  //rotateX(radians(offsetAngleY));
   rotateX(2*PI*mouseY/height);
 
   noFill();
@@ -40,7 +38,7 @@ void draw() {
     ellipse(0, 0, delta * i, delta * i);
     popMatrix();
   }
-  
+
   if (loop)
     iteration += 0.2;
   //println("sin(radians(iteration)) = " + str( sin(radians(iteration)) ));
@@ -64,9 +62,9 @@ void keyPressed() {
   if (key == 'z') {
     z_rotate = !z_rotate;
   }
-  
+
   if (key == 'l') {
-    if (loop) { 
+    if (loop) {
       loop = false;
       //noLoop();
     }
@@ -74,5 +72,5 @@ void keyPressed() {
       loop = true;
       //loop();
     }
-  } 
+  }
 }
