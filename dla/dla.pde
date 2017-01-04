@@ -2,12 +2,14 @@ ArrayList<Walker> walkers;
 ArrayList<Walker> tree;
 int nOfw = 100;
 int nOft = 1500;
+int record=0;
+
 
 color c1 = color (211, 84, 0);
 color c2 = color (37, 116, 169);
 color cb = color (30, 30, 30);
 void setup() {
-  size(900, 900);
+  size(1000, 1000);
   background(cb);
   // colorMode(HSB);
   treeInit();
@@ -40,6 +42,13 @@ void draw() {
     }
     ite--;
   }
+
+  if (tree.size()%50 == 0) {
+    if (record != tree.size() ) {
+      record = tree.size();
+      screenshot();
+    }
+  }
 }
 // void treeInit() {
 //   tree = new ArrayList<Walker>();
@@ -50,7 +59,7 @@ void draw() {
 // }
 void treeInit() {
   tree = new ArrayList<Walker>();
-  float radian = width/2;
+  float radian = width/2.5;
   float n = 100;
   for (int i=0; i<n; i++) {
     float angle = 2 * PI * i / n;
@@ -89,4 +98,11 @@ void keyPressed() {
       walkers.add(new Walker());
     }
   }
+}
+
+
+void screenshot() {
+  TImage frame = new TImage(width,height,RGB,sketchPath("frame_"+nf(frameCount,5)+".png"));
+  frame.set(0,0,get());
+  frame.saveThreaded();
 }
