@@ -50,24 +50,24 @@ void draw() {
     }
   }
 }
-// void treeInit() {
-//   tree = new ArrayList<Walker>();
-//   // tree.add(new Walker(width/2, height/2, true));
-//   for (int i=0; i<50; i++) {
-//     tree.add(new Walker( width * (i/50.0), height, true));
-//   }
-// }
 void treeInit() {
   tree = new ArrayList<Walker>();
-  float radian = width/2.5;
-  float n = 100;
-  for (int i=0; i<n; i++) {
-    float angle = 2 * PI * i / n;
-    float _x = radian * cos (angle);
-    float _y = radian * sin (angle);
-    tree.add(new Walker(width/2 + _x, height/2 + _y, true));
+  // tree.add(new Walker(width/2, height/2, true));
+  for (int i=0; i<50; i++) {
+    tree.add(new Walker( width * (i/50.0), height, true));
   }
 }
+// void treeInit() {
+//   tree = new ArrayList<Walker>();
+//   float radian = width/2.5;
+//   float n = 100;
+  // for (int i=0; i<n; i++) {
+  //   float angle = 2 * PI * i / n;
+  //   float _x = radian * cos (angle);
+  //   float _y = radian * sin (angle);
+  //   tree.add(new Walker(width/2 + _x, height/2 + _y, true));
+  // }
+// }
 // void treeInit() {
 //   tree = new ArrayList<Walker>();
 //   // tree.add(new Walker(width/2, height/2, true));

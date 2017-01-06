@@ -9,14 +9,15 @@ class Walker {
   boolean stuck = false;
 
   Walker() {
-    // x = random(0, width);
+    x = random(0, width);
+    y = 0;
     // int i = floor(random(2));
     // if (i==0) { y = 0; }
     // else if (i==1) { y = height; }
     c = lerpColor(c1, c2, constrain((tree.size()/float(nOft)), 0, 1));
 
-    x = width/2;
-    y = height/2;
+    // x = width/2;
+    // y = height/2;
 
     // x = random(0, width);
     // y = random(0, height);
@@ -47,10 +48,10 @@ class Walker {
 
     //normal
     x = constrain( x + random(-1 * step, step), 0, width);
-    y = constrain( y + random(-1 * step, step), 0, height);
+    // y = constrain( y + random(-1 * step, step), 0, height);
 
     // tree
-    // y = constrain( y + random(-1 * step, step + 0.05), 0, height);
+    y = constrain( y + random(-1 * step, step + 0.05), 0, height);
   }
 
   void show() {
