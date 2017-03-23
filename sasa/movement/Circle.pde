@@ -47,18 +47,18 @@ class Circle {
   }
 
   void checkMargin() {
-    if (x < 0) {
+    if (x < - unit / 2) {
       x = width;
       ic = nOfC;
-    } else if (x > width) {
+    } else if (x > width + unit / 2) {
       x = 0;
       ic = 0;
     }
 
-    if (y < 0) {
+    if (y < - unit / 2) {
       y = height;
       ir = nOfR;
-    } else if (y > height) {
+    } else if (y > height + unit / 2) {
       y = 0;
       ir = 0;
     }
@@ -67,7 +67,7 @@ class Circle {
   }
 
   void render() {
-    fill(c2, 50);
+    fill(c2, 100);
     noStroke();
     float dim = r * (sin(count++ / 20.0) * 0.2 + 1);
     ellipse(x, y, dim, dim);
