@@ -6,7 +6,7 @@ void setup() {
   v = new float[number];
   for (int i = 0; i < number; i ++) {
     v[i] = random(3);
-  
+
   }
 }
 

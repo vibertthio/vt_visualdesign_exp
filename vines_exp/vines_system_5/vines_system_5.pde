@@ -36,11 +36,11 @@ void draw() {
     }
   }
 
-  if(frameCount <= 500 && frameCount%2 == 0){
-    TImage frame = new TImage(width,height,RGB,sketchPath("frame_"+nf(frameCount,3)+".png"));
-    frame.set(0,0,get());
-    frame.saveThreaded();
-  }
+  // if(frameCount <= 500 && frameCount%2 == 0){
+  //   TImage frame = new TImage(width,height,RGB,sketchPath("frame_"+nf(frameCount,3)+".png"));
+  //   frame.set(0,0,get());
+  //   frame.saveThreaded();
+  // }
 }
 
 void mousePressed() {
