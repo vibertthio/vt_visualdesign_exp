@@ -10,8 +10,8 @@ void setup() {
 }
 
 void draw() {
-  fill(0, 20);
-  rect(0, 0, width, height);
+  // fill(0, 5);
+  // rect(0, 0, width, height);
 
   while (vines.size() > 1000) {
     vines.remove(0);
@@ -31,6 +31,9 @@ void draw() {
   for (int i = 0, n = vines.size(); i < n; i++) {
     vines.get(i).render();
   }
+
+
+
 }
 
 void mouseDragged() {
