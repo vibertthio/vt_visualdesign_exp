@@ -57,3 +57,9 @@ class Circle {
     ellipse(x, y, dim, dim);
   }
 }
+
+void keyPressed() {
+  if (key == 'a') {
+    saveFrame("frame/####.png");
+  }
+}
