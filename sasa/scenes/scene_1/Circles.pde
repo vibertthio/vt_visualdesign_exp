@@ -49,10 +49,29 @@ class Circles {
   }
 
   void mousePressed(int _mX, int _mY) {
-    int mX = round(_mX / unit);
-    int mY = round(_mY / unit);
-    println("mX : " + mX);
-    println("mY : " + mY);
+    if (key == 'a') {
+      addCircle(_mX, _mY);
+    } else if (key == 'p') {
+      addCirclePlayer(_mX, _mY);
+    } else if (key == 'r') {
+      removeCircles(_mX, _mY);
+    }
+  }
+
+  void debug() {
+    println("-----------------------------");
+    for (int i = 0, n = nOfR * nOfC; i < n; i++) {
+      if (i % nOfC == 0) {
+        println("");
+      }
+      int s = map.get(i).size();
+      if (s == 0) {
+        print(" " + "_" + " ");
+      } else {
+        print(" " + s + " ");
+      }
+    }
+    println("");
   }
 
   private void shift(Circle c) {
@@ -60,6 +79,9 @@ class Circles {
 
     int index = c.ir * nOfC + c.ic;
     int _index;
+    // println("from--------");
+    // println("ic : " + c.ic);
+    // println("ir : " + c.ir);
     map.get(index).remove(c);
     if (k < 0.25) {
       // println("1");
@@ -73,7 +95,7 @@ class Circles {
       c.ic -= 1;
       _index = index - 1;
       if (c.ic < 0) {
-        _index = c.ir * nOfC + nOfR - 1;
+        _index += nOfC;
       }
     } else if (k < 0.75) {
       // println("3");
@@ -90,6 +112,7 @@ class Circles {
         _index += nOfR * nOfC;
       }
     }
+    // println("to--------");
     // println("ic : " + c.ic);
     // println("ir : " + c.ir);
     map.get(_index).add(c);
