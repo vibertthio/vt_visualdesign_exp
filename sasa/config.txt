@@ -1,0 +1,2 @@
+color c1 = color(219, 10, 91);
+color c2 = color(236, 236, 236);

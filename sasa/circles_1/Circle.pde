@@ -49,23 +49,24 @@ class Circle {
   void checkMargin() {
     if (x < - unit / 2) {
       x = width;
-      ic = nOfC;
+      ic = nOfC - 1;
     } else if (x > width + unit / 2) {
-      x = 0;
+      x = - unit / 2;
       ic = 0;
     }
 
     if (y < - unit / 2) {
-      y = height;
-      ir = nOfR;
+      y = height + unit / 2;
+      ir = nOfR - 1;
     } else if (y > height + unit / 2) {
-      y = 0;
+      y = - unit / 2;
       ir = 0;
     }
   }
 
   void render() {
-    fill(lerpColor(c1, c2, random(1)), 100);
+    color c = lerpColor(c1, c2, random(1));
+    fill(c1, 100);
     noStroke();
     float dim = r * (sin(count++ / 20.0) * 0.2 + 1);
     ellipse(x, y, dim, dim);
