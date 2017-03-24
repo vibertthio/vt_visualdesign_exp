@@ -1,6 +1,7 @@
 class Circles {
   ArrayList<Circle> circles;
   ArrayList<ArrayList<Circle>> map;
+  boolean steady = true;
 
   Circles() {
     circles = new ArrayList<Circle>();
@@ -17,7 +18,7 @@ class Circles {
   void render() {
     for (int i = 0, n = circles.size(); i < n; i++) {
       Circle cir = circles.get(i);
-      if (random(1) < 1e-2 && !cir.moving) {
+      if (random(1) < 1e-2 && steady &&!cir.moving) {
         shift(cir);
       }
       cir.update();
@@ -58,6 +59,18 @@ class Circles {
     }
   }
 
+  void noteOn(Note note) {
+    println();
+    println("Note On:");
+    println("--------");
+    println("Channel:"+note.channel());
+    println("Pitcsh:"+note.pitch());
+    println("Velocity:"+note.velocity());
+    if (note.pitch == 37) {
+      steady = !steady;
+    }
+  }
+
   void debug() {
     println("-----------------------------");
     for (int i = 0, n = nOfR * nOfC; i < n; i++) {
@@ -73,6 +86,7 @@ class Circles {
     }
     println("");
   }
+
 
   private void shift(Circle c) {
     float k = random(1);
@@ -122,6 +136,5 @@ class Circles {
     int index = ir * nOfC + ic;
     return map.get(index);
   }
-
 
 }

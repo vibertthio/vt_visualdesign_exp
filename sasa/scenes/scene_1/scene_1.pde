@@ -39,6 +39,7 @@ void setup() {
 
 void draw() {
   // println(frameRate);
+  // circles.debug();
   background(c5);
   circles.render();
 }
@@ -51,20 +52,12 @@ void keyPressed() {
   if (key == 's') {
     saveFrame("frame/####.png");
   }
-
-  if (key == 'd') {
-  }
 }
 
 
 void noteOn(Note note) {
   // Receive a noteOn
-  println();
-  println("Note On:");
-  println("--------");
-  println("Channel:"+note.channel());
-  println("Pitch:"+note.pitch());
-  println("Velocity:"+note.velocity());
+  circles.noteOn(note);
 }
 void noteOff(Note note) {
   // Receive a noteOff
