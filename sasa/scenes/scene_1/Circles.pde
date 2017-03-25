@@ -19,7 +19,7 @@ class Circles {
     for (int i = 0, n = circles.size(); i < n; i++) {
       Circle cir = circles.get(i);
       if (random(1) < 1e-2 && steady &&!cir.moving) {
-        shift(cir);
+        cir.shiftRnadom();
       }
       cir.update();
       cir.render();
@@ -28,7 +28,7 @@ class Circles {
 
   void addCircle(int _mX, int _mY) {
     int index = round(_mY / unit) * nOfC + round(_mX / unit);
-    Circle c = new Circle(_mX, _mY, unit / 2);
+    Circle c = new Circle(_mX, _mY, unit / 2, this);
     map.get(index).add(c);
     circles.add(c);
   }
@@ -59,6 +59,51 @@ class Circles {
     }
   }
 
+  void keyPressed() {
+    // Position and Radius
+    // 1 : steady
+    // 2 : move right
+    // 3 : move left
+    // 4 : trigger
+    // 5 : random radius
+
+    if (key == '1') {
+      steady = !steady;
+    } else if (key == '2') {
+      for (int i = 0, n = circles.size(); i < n; i++) {
+        circles.get(i).shiftRight();
+      }
+    } else if (key == '3') {
+      for (int i = 0, n = circles.size(); i < n; i++) {
+        circles.get(i).shiftLeft();
+      }
+    } else if (key == '4') {
+      for (int i = 0, n = circles.size(); i < n; i++) {
+        circles.get(i).triggerRadius();
+      }
+    }  else if (key == '5') {
+      for (int i = 0, n = circles.size(); i < n; i++) {
+        circles.get(i).radiusMode = 2;
+      }
+    } else if (key == '6') {
+      for (int i = 0, n = circles.size(); i < n; i++) {
+        circles.get(i).radiusMode = 3;
+      }
+    } else if (key == '7') {
+      for (int i = 0, n = circles.size(); i < n; i++) {
+        circles.get(i).radiusMode = 0;
+      }
+    }
+
+    // Color Control
+    if (key == '8') {
+      for (int i = 0, n = circles.size(); i < n; i++) {
+        Circle c = circles.get(i);
+        c.colorIndex = (c.colorIndex + 1) % colorList.length;
+      }
+    }
+  }
+
   void noteOn(Note note) {
     println();
     println("Note On:");
@@ -66,9 +111,102 @@ class Circles {
     println("Channel:"+note.channel());
     println("Pitcsh:"+note.pitch());
     println("Velocity:"+note.velocity());
-    if (note.pitch == 37) {
-      steady = !steady;
+
+    switch(note.pitch()) {
+      // Shift and Position
+      case 9 :
+        steady = !steady;
+        break;
+
+      case 17 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).shiftUp();
+        }
+        break;
+      case 1 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).shiftDown();
+        }
+        break;
+      case 8 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).shiftLeft();
+        }
+        break;
+      case 10 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).shiftRight();
+        }
+        break;
+
+      // Radius Control
+      case 3 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).radiusMode = 0;
+        }
+        break;
+      case 4 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).radiusMode = 1;
+        }
+        break;
+      case 5 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).radiusMode = 2;
+        }
+        break;
+      case 6 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).radiusMode = 3;
+        }
+        break;
+      case 7 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).triggerRadius();
+        }
+        break;
+
+      // Color Control
+      case 11 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).radiusMode = 0;
+        }
+        break;
+      case 12 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).radiusMode = 1;
+        }
+        break;
+      case 13 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).radiusMode = 2;
+        }
+        break;
+      case 14 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).radiusMode = 3;
+        }
+        break;
+      case 15 :
+        for (int i = 0, n = circles.size(); i < n; i++) {
+          circles.get(i).triggerRadius();
+        }
+        break;
+
+      default :
+        break;
     }
+
+  }
+
+  void controllerChange(ControlChange change) {
+    // Receive a controllerChange
+    println();
+    println("Controller Change:");
+    println("--------");
+    println("Channel:"+change.channel());
+    println("Number:"+change.number());
+    println("Value:"+change.value());
   }
 
   void debug() {
@@ -136,5 +274,9 @@ class Circles {
     int index = ir * nOfC + ic;
     return map.get(index);
   }
+
+}
+
+class Preset {
 
 }

@@ -16,16 +16,22 @@ int nOfC;
 
 String controller = "APC40 mkII";
 
-color c1 = color(219, 10, 91);
-color c2 = color(236, 236, 236);
-color c3 = color(68, 108, 179); // SAN MARINO
-color c4 = color(197, 239, 247); // HUMMING BIRD
-color c5 = color(44, 62, 80); // MADISON
-color c6 = color(220, 198, 224);
-color c7 = color(233, 212, 96); // TRIGGER
+
+
+color[] colorList = {
+  color(219, 10, 91),
+  color(236, 236, 236),
+  color(68, 108, 179), // SAN MARINO
+  color(197, 239, 247), // HUMMING BIRD
+  color(44, 62, 80), // MADISON
+  color(220, 198, 224),
+  color(233, 212, 96), // TRIGGER
+  color(243, 156, 18),
+  color(46, 204, 113),
+};
 
 void setup() {
-  size(800, 400);
+  size(1920, 1080);
   MidiBus.list();
 
   nOfC = round(width / unit) + 1;
@@ -39,8 +45,8 @@ void setup() {
 
 void draw() {
   // println(frameRate);
+  background(colorList[4]);
   // circles.debug();
-  background(c5);
   circles.render();
 }
 
@@ -52,6 +58,7 @@ void keyPressed() {
   if (key == 's') {
     saveFrame("frame/####.png");
   }
+  circles.keyPressed();
 }
 
 
@@ -59,6 +66,11 @@ void noteOn(Note note) {
   // Receive a noteOn
   circles.noteOn(note);
 }
+
+void controllerChange(ControlChange change) {
+  circles.controllerChange(change);
+}
+
 void noteOff(Note note) {
   // Receive a noteOff
   println();
@@ -67,13 +79,4 @@ void noteOff(Note note) {
   println("Channel:"+note.channel());
   println("Pitch:"+note.pitch());
   println("Velocity:"+note.velocity());
-}
-void controllerChange(ControlChange change) {
-  // Receive a controllerChange
-  println();
-  println("Controller Change:");
-  println("--------");
-  println("Channel:"+change.channel());
-  println("Number:"+change.number());
-  println("Value:"+change.value());
 }
