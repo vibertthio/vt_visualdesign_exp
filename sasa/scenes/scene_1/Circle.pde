@@ -72,7 +72,7 @@ class Circle {
     spark += (0 - spark) * 0.1;
   }
 
-  void shiftRnadom() {
+  void shiftRandom() {
     float k = random(1);
     if (k < 0.25) {
       shiftRight();

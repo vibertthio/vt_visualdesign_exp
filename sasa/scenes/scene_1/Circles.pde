@@ -19,7 +19,7 @@ class Circles {
     for (int i = 0, n = circles.size(); i < n; i++) {
       Circle cir = circles.get(i);
       if (random(1) < 1e-2 && steady &&!cir.moving) {
-        cir.shiftRnadom();
+        cir.shiftRandom();
       }
       cir.update();
       cir.render();
@@ -201,12 +201,12 @@ class Circles {
 
   void controllerChange(ControlChange change) {
     // Receive a controllerChange
-    println();
-    println("Controller Change:");
-    println("--------");
-    println("Channel:"+change.channel());
-    println("Number:"+change.number());
-    println("Value:"+change.value());
+    // println();
+    // println("Controller Change:");
+    // println("--------");
+    // println("Channel:"+change.channel());
+    // println("Number:"+change.number());
+    // println("Value:"+change.value());
   }
 
   void debug() {

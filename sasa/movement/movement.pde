@@ -6,11 +6,14 @@ int nOfC;
 color c1 = color(219, 10, 91);
 color c2 = color(236, 236, 236);
 
+
+
 void setup() {
-  size(960, 540);
+  size(1920, 1080);
   circles = new ArrayList<Circle>();
   nOfC = round(width / unit);
   nOfR = round(height / unit);
+
 
 }
 
@@ -40,8 +43,9 @@ void mousePressed() {
   // saveFrame("bk-######.png");
 }
 
+int count = 0;
 void keyPressed() {
-  if (key == 'a') {
-    saveFrame("frame/####.png");
+  if (key == 's') {
+    saveFrame("frame/" + width + "x" + height + "_" + count++ + ".png");
   }
 }

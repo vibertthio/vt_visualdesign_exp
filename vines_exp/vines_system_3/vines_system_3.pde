@@ -36,6 +36,12 @@ void draw() {
 
 }
 
+void keyPressed() {
+  if (key == ' ') {
+    background(0);
+  }
+}
+
 void mouseDragged() {
   vines.add(new Vine(mouseX, mouseY));
 }

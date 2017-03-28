@@ -16,7 +16,11 @@ int nOfC;
 
 String controller = "APC40 mkII";
 
-
+// Sasabk
+int nOfSasa = 5;
+int countOfSasa = 0;
+int transparencyOfSasa = 255;
+PImage[] imgsOfSasa;
 
 color[] colorList = {
   color(219, 10, 91),
@@ -41,13 +45,27 @@ void setup() {
   circles = new Circles();
   midi = new MidiBus(this, controller, -1); // Create a new MidiBus with no input device and the default Java Sound Synthesizer as the output device.
 
+  //bk
+  imgsOfSasa = new PImage[nOfSasa];
+  for (int i = 0; i < nOfSasa; i++) {
+    String fl = str(width) + "x" + str(height) + "_" + str(i) + ".png";
+    imgsOfSasa[i] = loadImage(fl);
+  }
+
 }
 
 void draw() {
-  // println(frameRate);
+  println(frameRate);
   background(colorList[4]);
+  sasabk();
   // circles.debug();
   circles.render();
+}
+
+void sasabk() {
+  tint(255, transparencyOfSasa);
+  image(imgsOfSasa[countOfSasa++], 0, 0);
+  countOfSasa %= nOfSasa;
 }
 
 void mousePressed() {
@@ -68,6 +86,7 @@ void noteOn(Note note) {
 }
 
 void controllerChange(ControlChange change) {
+  transparencyOfSasa = change.value();
   circles.controllerChange(change);
 }
 
