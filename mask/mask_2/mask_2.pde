@@ -10,7 +10,7 @@ void setup() {
   size(1920, 1080);
   background(0);
   vines = new ArrayList<Vine>();
-  mask = loadImage("mask2.png");
+  mask = loadImage("mask2_350.png");
 
 }
 
